@@ -1,7 +1,7 @@
 import { Body, Controller, HttpStatus, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterByEmailDto } from './dto/register-by-email.dto';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto } from './dto/login-by-email.dto';
 import { AuthGuard } from './auth.guard';
 import {
   RequestUser,
@@ -36,18 +36,31 @@ export class AuthController {
     // };
     // return response;
   }
-  // @Post('login')
-  // public async login(@Body() dto: LoginDto) {
-  //   return await this.authService.login(dto);
-  // }
+  @Post('login')
+  public async login(@Body() dto: LoginDto) {
+    const data = await this.authService.login(dto);
+    const response: StandardResponse = {
+      success: true,
+      code: HttpStatus.OK,
+      message: AppMessage.LOGIN_SUCCESS,
+      data,
+    };
+    return response;
+  }
   @UseGuards(AuthGuard)
   @Post('logout')
   public async logout(@User() user: RequestUser) {
-    return await this.authService.logout(user.id);
+    await this.authService.logout(user.id);
+    const response: StandardResponse = {
+      success: true,
+      code: HttpStatus.OK,
+      message: AppMessage.LOGOUT_SUCCESS,
+    };
+    return response;
   }
 
-  // @Post("refresh")
-  // public async refreshTokens(@Body("refreshToken") rt: string) {
-  //   return await this.authService.refreshTokens(rt);
-  // }
+  @Post('refresh')
+  public async refreshTokens(@Body('refreshToken') rt: string) {
+    return await this.authService.refreshTokens(rt);
+  }
 }

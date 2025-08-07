@@ -7,6 +7,7 @@ import {
   FileTypeValidator,
   MaxFileSizeValidator,
   UseGuards,
+  HttpStatus,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from './cloudinary.service';
@@ -17,6 +18,8 @@ import {
   User,
 } from 'src/common/decorators/request.user.decorator';
 import { UserService } from 'src/user/user.service';
+import { StandardResponse } from 'src/response/StandardResponse';
+import { AppMessage } from 'src/response/AppMessage';
 @Controller('upload')
 export class CloudinaryController {
   constructor(
@@ -45,5 +48,11 @@ export class CloudinaryController {
       user.name,
     );
     await this.userService.updateUserAvatar(user.id, uploadResult.secure_url);
+    const response: StandardResponse = {
+      success: true,
+      code: HttpStatus.OK,
+      message: AppMessage.UPLOADED_SUCCESSFULLY,
+    };
+    return response;
   }
 }
