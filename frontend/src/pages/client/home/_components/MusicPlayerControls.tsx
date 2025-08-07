@@ -3,14 +3,14 @@ import React from 'react';
 import {
     Shuffle,
     SkipBack,
-    Play, // Hoặc Pause nếu bạn muốn nút Play/Pause
+    Play,
     SkipForward,
     Repeat,
-    Mic2, // Hoặc ScrollText / BookText cho Lyrics
-    ListMusic, // Hoặc QueueList
-    Speaker, // Hoặc Cast / Bluetooth cho Connect Device
-    Maximize, // Hoặc Fullscreen
-    Volume2, // Hoặc VolumeX, Volume1, Volume
+    Mic2, 
+    ListMusic,
+    Speaker, 
+    Maximize, 
+    Volume2, 
 } from 'lucide-react';
 
 const MusicPlayerControls = () => {
@@ -19,9 +19,7 @@ const MusicPlayerControls = () => {
             {/* Thanh tiến trình */}
             <div className="w-full max-w-2xl mb-4 flex items-center justify-center">
                 <div className="w-full h-1 bg-gray-700 rounded-full relative">
-                    {/* Track đã phát (có thể thêm dynamic width ở đây) */}
-                    <div className="absolute h-full bg-green-500 rounded-full w-[30%]"></div> {/* Ví dụ 30% đã phát */}
-                    {/* Đầu kéo (Thumb) */}
+                    <div className="absolute h-full bg-green-500 rounded-full w-[30%]"></div> 
                     <div className="absolute left-[30%] -translate-x-1/2 -translate-y-1/2 top-1/2 w-3 h-3 bg-white rounded-full shadow-md"></div>
                 </div>
             </div>

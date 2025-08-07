@@ -1,9 +1,8 @@
 // components/MainContent.jsx
 import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Icons
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const MainContent = () => {
-    // Dữ liệu giả định cho các mục bài hát/album
     const songItems = [
         { id: 1, title: 'À Lôi', artist: 'Double2T, Masew', image: 'https://via.placeholder.com/120x120?text=Song1' },
         { id: 2, title: 'Lạc Vào Trong Mơ', artist: 'Sonng M-TP, WUY', image: 'https://via.placeholder.com/120x120?text=Song2' },
@@ -99,7 +98,6 @@ const MainContent = () => {
                         <a href="#" className="text-sm text-gray-400 hover:underline">Hiện tất cả</a>
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
-                        {/* Đây sẽ là các item tương tự như "Được đề xuất cho hôm nay", nhưng có thể có hình dạng khác (ví dụ tròn) */}
                         {recentlyPlayed.map(item => (
                             <div key={item.id} className="bg-[#181818] p-4 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-[#282828] transition-colors">
                                 <img src={item.image} alt={item.name} className="w-24 h-24 rounded-full mb-2 object-cover" />

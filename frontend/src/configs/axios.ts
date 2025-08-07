@@ -6,7 +6,6 @@ interface FailedRequests{
     error: AxiosError;
 }
 const axiosInstance = axios.create({
-    // baseURL:  "https://backebd-1.onrender.com",
     baseURL:  "http://localhost:8000",
     headers: {
         "Content-Type": "application/json"
