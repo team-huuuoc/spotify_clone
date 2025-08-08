@@ -56,12 +56,12 @@ const Header = () => {
                         <Download className={"w-4 h-4 mr-1"}/> {/* Biểu tượng cài đặt/tải xuống */}
                         Cài đặt Ứng dụng
                     </div>
-                    <p className="text-lg text-gray-300 transition-transform duration-300 hover:scale-110 hover:text-white">
+                    <Link to={"/auth/signup"} className="text-lg text-gray-300 transition-transform duration-300 hover:scale-110 hover:text-white">
                         Đăng ký
-                    </p>
-                    <button className="bg-white text-black px-6 py-2 rounded-full text-xl font-semibold transition-transform duration-300 hover:scale-110">
+                    </Link>
+                    <Link to={"/auth/login"} className="bg-white text-black px-6 py-2 rounded-full text-xl font-semibold transition-transform duration-300 hover:scale-110">
                         Đăng nhập
-                    </button>
+                    </Link>
                 </div>
 
             </div>
@@ -71,3 +71,4 @@ const Header = () => {
 
 
 export default Header;
+    

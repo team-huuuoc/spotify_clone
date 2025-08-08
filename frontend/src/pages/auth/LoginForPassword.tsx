@@ -1,12 +1,13 @@
-import React from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {loginSchema} from "@/common/validation/authSchema";
-import {toast} from "react-toastify";
-import axiosInstance from "@/configs/axios";
+import { loginSchema } from '@/common/validation/authSchema'
+import axiosInstance from '@/configs/axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Eye, EyeOff } from 'lucide-react'
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-const Login = () => {
+const LoginForPassword = () => {
     const nav = useNavigate()
     const {
         register,
@@ -32,8 +33,10 @@ const Login = () => {
         }
 
     }
+    const [showPassword, setShowPassword] = useState(false)
+      const togglePassword = () => setShowPassword(!showPassword)
   return (
-     <div className="min-h-screen bg-[#121212] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#121212] flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-black rounded-lg p-8 text-white text-center shadow-lg">
         <img
           src="https://storage.googleapis.com/pr-newsroom-wp/1/2023/02/Spotify_Logo_CMYK_Green.png"
@@ -92,6 +95,32 @@ const Login = () => {
             )}
           </div>
 
+          <div>
+            <label htmlFor="password" className="block text-sm font-bold mb-1">
+              Password
+            </label>
+            <div className='relative'>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              {...register("password", { required: "This field is required" })}
+              className="w-full h-12 bg-black text-white border border-gray-500 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
+            <button
+                type='button'
+                className='absolute right-3 top-2.5 text-gray-400'
+                onClick={togglePassword}
+              >
+                {showPassword ? <EyeOff /> : <Eye />}
+              </button>
+              </div>
+          </div>
+
           <Link to={"/auth/login/otp"}
             type="submit"
             className="w-full bg-green-500 text-black font-bold text-center py-2 rounded-full hover:bg-green-400 transition"
@@ -111,8 +140,7 @@ const Login = () => {
         </p>
       </div>
     </div>
+  )
+}
 
-  );
-};
-
-export default Login;
+export default LoginForPassword

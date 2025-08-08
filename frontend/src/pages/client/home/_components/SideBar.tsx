@@ -5,13 +5,10 @@ import { Home, Search, Library, Plus, Heart, Download } from 'lucide-react'; // 
 const Sidebar = () => {
     return (
         <aside className="bg-black text-gray-300 w-96 p-4 flex flex-col h-full overflow-y-auto custom-scrollbar">
-            {/* Logo */}
             <div className="mb-6 px-2">
-                {/* Placeholder cho logo Spotify. Thay thế bằng ảnh thật */}
                 <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Spotify_Logo_RGB_Green.max-1000x1000.png" alt="Spotify Logo" className="h-10" />
             </div>
 
-            {/* Navigation chính */}
             <nav className="mb-6">
                 <ul>
                     <li className="mb-2">
@@ -35,7 +32,6 @@ const Sidebar = () => {
                 </ul>
             </nav>
 
-            {/* Phần Tạo Playlist và Bài hát đã thích */}
             <div className="mb-6">
                 <ul className="space-y-2">
                     <li>
@@ -57,10 +53,8 @@ const Sidebar = () => {
                 </ul>
             </div>
 
-            {/* Danh sách Playlist */}
             <div className="flex-grow border-t border-gray-800 pt-4 overflow-y-auto custom-scrollbar">
                 <ul className="space-y-2">
-                    {/* Ví dụ 10 playlist. Trong thực tế bạn sẽ map qua một mảng dữ liệu */}
                     {Array.from({ length: 10 }).map((_, i) => (
                         <li key={i}>
                             <a href="#" className="text-sm text-gray-400 hover:text-white block p-1 rounded-md">
@@ -73,7 +67,6 @@ const Sidebar = () => {
                             <span className="text-green-500">Thuần Podcast</span>
                         </a>
                     </li>
-                    {/* Thêm các mục khác như trong hình */}
                     <li>
                         <a href="#" className="text-sm text-gray-400 hover:text-white block p-1 rounded-md">
                             <span className="text-green-500">Playlist của tôi #1</span>
@@ -95,13 +88,7 @@ const Sidebar = () => {
                 </ul>
             </div>
 
-            {/* Nút cài đặt ứng dụng ở dưới cùng */}
-            {/*<div className="mt-4 px-2">*/}
-            {/*    <a href="#" className="flex items-center text-sm text-gray-400 hover:text-white">*/}
-            {/*        <Download className="w-4 h-4 mr-2" />*/}
-            {/*        Cài đặt Ứng dụng*/}
-            {/*    </a>*/}
-            {/*</div>*/}
+           
         </aside>
     );
 };
