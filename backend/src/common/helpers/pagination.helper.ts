@@ -18,6 +18,5 @@ export function buildPaginationQuery(
     : {};
 
   const orderBy = { [sortField]: sortOrder };
-
   return { skip, take: limit, where, orderBy };
 }
