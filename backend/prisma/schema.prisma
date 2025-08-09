@@ -9,17 +9,90 @@ enum Role {
   USER
   ADMIN
 }
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  hashedPassword  String
-  hashRefreshToken     String?
-  role      Role     @default(USER)
-  phoneNumber String?   
-  avatar      String?    
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                Int      @id @default(autoincrement())
+  name              String
+  email             String?  @unique
+  hashedPassword    String
+  hashRefreshToken  String?
+  role              Role     @default(USER)
+  phoneNumber       String?  @unique
+  avatar            String?    
+  gender            Gender?
+  dateOfBirth       DateTime? 
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  follows           Follow[]
   @@map("users")
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  otp       String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  email     String
+  verified     Boolean    @default(false)
+  atttempts   Int        @default(0)
+} 
+
+model Artist {
+  id           String   @id
+  name         String
+  totalFollowers Int
+  genres      String[]
+  uri         String?
+  externalUrl String?
+  albums      Album[]
+  tracks      Track[]
+}
+
+model Album {
+  id          String   @id
+  name        String
+  releaseDate DateTime?
+  releaseDatePrecision String?
+  totalTracks Int
+  images      Json?
+  uri         String?
+  externalUrl String?
+  artistId    String
+  artist      Artist   @relation(fields: [artistId], references: [id])
+  tracks      Track[]
+}
+
+model Track {
+  id            String   @id
+  name          String
+  durationMs    Int
+  explicit      Boolean
+  trackNumber   Int
+  previewUrl    String?
+  uri           String?
+  externalUrl   String?
+  availableMarkets String[]
+  albumId       String
+  album         Album    @relation(fields: [albumId], references: [id])
+  artistId      String
+  artist        Artist   @relation(fields: [artistId], references: [id])
+}
+model Follow {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  targetId  String   
+  type      FollowType
+  createdAt DateTime @default(now())
+}
+
+enum FollowType {
+  ARTIST
+  PLAYLIST
+  ALBUM
 }

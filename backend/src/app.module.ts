@@ -2,9 +2,33 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { OtpModule } from './otp/otp.module';
+import { MailModule } from './mail/mail.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { ConfigModule } from '@nestjs/config';
+import { ArtistModule } from './artist/artist.module';
+import { SpotifyModule } from './spotify/spotify.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { FollowModule } from './follow/follow.module';
 
 @Module({
-  imports: [PrismaModule],
+  imports: [
+    ScheduleModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    PrismaModule,
+    AuthModule,
+    UserModule,
+    CloudinaryModule,
+    OtpModule,
+    MailModule,
+    ArtistModule,
+    SpotifyModule,
+    FollowModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
