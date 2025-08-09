@@ -1,11 +1,11 @@
 import {
+  Body,
   Controller,
-  Delete,
   Get,
   HttpStatus,
   Param,
   ParseIntPipe,
-  Query,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -36,8 +36,19 @@ export class UserController {
     };
     return response;
   }
-  @Get(':id')
-  public async getUserById(@Param('id', ParseIntPipe) id) {
-    return await this.userService.getUserById(id);
+  @Post('email')
+  public async getUSerByEmal(@Body('email') email: string) {
+    const user = await this.userService.getUserByEmail(email);
+    if (user) throw new UnauthorizedError(ErrorCode.EMAIL_IS_EXISTS);
+    const response: StandardResponse = {
+      success: true,
+      code: HttpStatus.OK,
+      message: AppMessage.SUCCESS_RESPONSE,
+    };
+    return response;
   }
+  // @Get(':id')
+  // public async getUserById(@Param('id', ParseIntPipe) id) {
+  //   return await this.userService.getUserById(id);
+  // }
 }

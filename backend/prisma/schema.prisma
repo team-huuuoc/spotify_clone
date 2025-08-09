@@ -41,3 +41,44 @@ model Otp {
   verified     Boolean    @default(false)
   atttempts   Int        @default(0)
 } 
+
+model Artist {
+  id           String   @id
+  name         String
+  totalFollowers Int
+  genres      String[]
+  uri         String?
+  externalUrl String?
+  albums      Album[]
+  tracks      Track[]
+}
+
+model Album {
+  id          String   @id
+  name        String
+  releaseDate DateTime?
+  releaseDatePrecision String?
+  totalTracks Int
+  images      Json?
+  uri         String?
+  externalUrl String?
+  artistId    String
+  artist      Artist   @relation(fields: [artistId], references: [id])
+  tracks      Track[]
+}
+
+model Track {
+  id            String   @id
+  name          String
+  durationMs    Int
+  explicit      Boolean
+  trackNumber   Int
+  previewUrl    String?
+  uri           String?
+  externalUrl   String?
+  availableMarkets String[]
+  albumId       String
+  album         Album    @relation(fields: [albumId], references: [id])
+  artistId      String
+  artist        Artist   @relation(fields: [artistId], references: [id])
+}

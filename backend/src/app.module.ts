@@ -8,9 +8,13 @@ import { OtpModule } from './otp/otp.module';
 import { MailModule } from './mail/mail.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ConfigModule } from '@nestjs/config';
+import { ArtistModule } from './artist/artist.module';
+import { SpotifyModule } from './spotify/spotify.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -20,6 +24,8 @@ import { ConfigModule } from '@nestjs/config';
     CloudinaryModule,
     OtpModule,
     MailModule,
+    ArtistModule,
+    SpotifyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
