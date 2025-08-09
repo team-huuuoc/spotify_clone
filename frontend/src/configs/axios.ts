@@ -6,7 +6,7 @@ interface FailedRequests{
     error: AxiosError;
 }
 const axiosInstance = axios.create({
-    baseURL:  "http://localhost:8000",
+    baseURL:  "https://allows-premier-dishes-writers.trycloudflare.com/api/v1",
     headers: {
         "Content-Type": "application/json"
     }
@@ -18,7 +18,7 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     async (error: AxiosError) => {
         const status = error.response?.status;
-        const originalRequestConfig = error.config!;;
+        const originalRequestConfig = error.config!;
         if (status !== 401){
             return Promise.reject(error);
         }
