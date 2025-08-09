@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { c } from 'vite/dist/node/moduleRunnerTransport.d-DJ_mE5sf';
 
 const OTPVerification = () => {
     const [otp, setOtp] = useState<string[]>(["", "", "", "", "", ""]);

@@ -121,12 +121,12 @@ const LoginForPassword = () => {
               </div>
           </div>
 
-          <Link to={"/auth/login/otp"}
+          <button 
             type="submit"
             className="w-full bg-green-500 text-black font-bold text-center py-2 rounded-full hover:bg-green-400 transition"
           >
             Continue
-          </Link>
+          </button>
         </form>
 
         <p className="text-sm text-gray-400 mt-6">
