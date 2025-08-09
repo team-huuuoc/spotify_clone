@@ -12,7 +12,7 @@ export class ArtistService {
     private readonly spotifyService: SpotifyService,
     private readonly prismaService: PrismaService,
   ) {}
-  @Cron(CronExpression.EVERY_10_MINUTES)
+  // @Cron(CronExpression.EVERY_10_MINUTES)
   async saveArtistFromSpotify() {
     this.logger.log('Bắt đầu đồng bộ artists từ Spotify...');
     const playlistId = '6XFOsAdp88ptBCdqUMAfmP';

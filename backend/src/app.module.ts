@@ -11,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ArtistModule } from './artist/artist.module';
 import { SpotifyModule } from './spotify/spotify.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { FollowModule } from './follow/follow.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     MailModule,
     ArtistModule,
     SpotifyModule,
+    FollowModule,
   ],
   controllers: [AppController],
   providers: [AppService],
