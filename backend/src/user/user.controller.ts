@@ -36,10 +36,21 @@ export class UserController {
     };
     return response;
   }
-  @Post('email')
-  public async getUSerByEmal(@Body('email') email: string) {
+  @Post('register/email')
+  public async getUSerByEmalToRegister(@Body('email') email: string) {
     const user = await this.userService.getUserByEmail(email);
     if (user) throw new UnauthorizedError(ErrorCode.EMAIL_IS_EXISTS);
+    const response: StandardResponse = {
+      success: true,
+      code: HttpStatus.OK,
+      message: AppMessage.SUCCESS_RESPONSE,
+    };
+    return response;
+  }
+  @Post('login/email')
+  public async getUSerByEmalToLogin(@Body('email') email: string) {
+    const user = await this.userService.getUserByEmail(email);
+    if (!user) throw new UnauthorizedError(ErrorCode.EMAIL_DOES_NOT_EXISTS);
     const response: StandardResponse = {
       success: true,
       code: HttpStatus.OK,

@@ -43,45 +43,54 @@ model Otp {
 } 
 
 model Artist {
-  id           String   @id
-  name         String
-  totalFollowers Int
-  genres      String[]
-  uri         String?
-  externalUrl String?
-  albums      Album[]
-  tracks      Track[]
+  id          String   @id
+  name        String
+  website     String?   
+  joindate    DateTime?
+  image       String?
+  tags        String[]
+  description String? 
+  albums      Album[]    
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Album {
-  id          String   @id
-  name        String
-  releaseDate DateTime?
-  releaseDatePrecision String?
-  totalTracks Int
-  images      Json?
-  uri         String?
-  externalUrl String?
-  artistId    String
-  artist      Artist   @relation(fields: [artistId], references: [id])
-  tracks      Track[]
+  id           String   @id
+  name         String
+  releasedate  DateTime?
+  image        String?
+  artist       Artist   @relation(fields: [artistId], references: [id])
+  artistId     String
+  tracks       Track[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Track {
-  id            String   @id
-  name          String
-  durationMs    Int
-  explicit      Boolean
-  trackNumber   Int
-  previewUrl    String?
-  uri           String?
-  externalUrl   String?
-  availableMarkets String[]
-  albumId       String
-  album         Album    @relation(fields: [albumId], references: [id])
-  artistId      String
-  artist        Artist   @relation(fields: [artistId], references: [id])
+  id                     String   @id
+  position               Int
+  name                   String
+  duration               Int
+  license_ccurl          String?
+  audio                  String?
+  audiodownload          String?
+  audiodownload_allowed  Boolean
+  album        Album    @relation(fields: [albumId], references: [id])
+  albumId      String
 }
+
+model Playlist {
+  id           String   @id
+  name         String
+  creationdate DateTime
+  userId       String
+  userName     String
+  zip          String?
+  shortUrl     String?
+  shareUrl     String?
+}
+
 model Follow {
   id        String   @id @default(uuid())
   user      User     @relation(fields: [userId], references: [id])

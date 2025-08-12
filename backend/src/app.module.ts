@@ -8,10 +8,9 @@ import { OtpModule } from './otp/otp.module';
 import { MailModule } from './mail/mail.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { ConfigModule } from '@nestjs/config';
-import { ArtistModule } from './artist/artist.module';
-import { SpotifyModule } from './spotify/spotify.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { FollowModule } from './follow/follow.module';
+import { ArtistModule } from './artist/artist.module';
+import { AlbumModule } from './album/album.module';
 
 @Module({
   imports: [
@@ -26,8 +25,7 @@ import { FollowModule } from './follow/follow.module';
     OtpModule,
     MailModule,
     ArtistModule,
-    SpotifyModule,
-    FollowModule,
+    AlbumModule,
   ],
   controllers: [AppController],
   providers: [AppService],
