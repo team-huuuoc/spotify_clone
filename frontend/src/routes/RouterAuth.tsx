@@ -4,6 +4,7 @@ import OTPVerification from "@/pages/auth/OTPVerification";
 import Register from "@/pages/auth/Register";
 import RegisterStep2 from "@/pages/auth/RegisterStep2";
 import RegisterStep3 from "@/pages/auth/RegisterStep3";
+import RegisterStep4 from "@/pages/auth/RegisterStep4";
 
 
 export const RouterAuth = [
@@ -30,6 +31,10 @@ export const RouterAuth = [
             {
                 path: "/auth/signup/step-3",
                 element: <RegisterStep3/>
+            },
+            {
+                path: "/auth/signup/step-4",
+                element: <RegisterStep4/>
             },
 
 ]
